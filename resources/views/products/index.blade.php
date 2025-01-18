@@ -9,6 +9,7 @@
         <div class="card mb-4">
             <div class="card-body">
                 <a href="{{ route('products.create') }}" class="btn btn-md btn-success mb-3">ADD PRODUCT</a>
+                <a href="{{ route('printproduct') }}" class="btn btn-md btn-secondary mb-3"> PRINT PRODUCT</a>
                 <table class="table table-bordered">
                     <thead>
                         <tr>

@@ -13,6 +13,11 @@ Route::get('/', function () {
 
 Route::get('dashboard', [UserController::class, 'dashboard']);
 Route::get('users', [UserController::class, 'users']);
+Route::get('printpdf', [UserController::class, 'printpdf'])->name('printuser');
+Route::get('userexcel', [UserController::class, 'printExcel'])->name('exportuser');
+Route::get('productpdf', [ProductController::class, 'productpdf'])->name('printproduct');
+Route::get('categorypdf', [CategoryController::class, 'categorypdf'])->name('printcategory');
+
 Route::resource('/products', \App\Http\Controllers\ProductController::class);
 Route::get('/products/{id}/show', [ProductController::class, 'show'])->name('products.show');
 Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');

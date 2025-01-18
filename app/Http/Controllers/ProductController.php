@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -100,5 +101,18 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('products.index')->with(['success' => 'Data Berhasil Dihapus!']);
+    }
+
+    public function productPdf()
+    {
+        $products = Product::get();
+        $data = [
+            'title' => 'Welcome To fti.uniska-bjm.ac.id',
+            'date' => date('d/m/Y'),
+            'products' => $products
+        ];
+        $pdf = PDF::loadView('productPdf', $data);
+        $pdf->setPaper('A4', 'portrait');
+        return $pdf->stream('Laporan Data Product.pdf', array("attachment" => false));
     }
 }
